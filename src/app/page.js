@@ -1,6 +1,7 @@
 import HeroSlider from "@/Components/App/HeroSlider";
 import PopularProducts from "@/Components/App/PopularProducts";
 import SummerCareTips from "@/Components/App/SummerCareTips";
+import TopBrands from "@/Components/App/TopBrands";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
         <HeroSlider />
         <PopularProducts />
         <SummerCareTips />
+        <TopBrands />
       </main>
     </div>
   );

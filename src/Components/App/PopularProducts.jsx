@@ -4,7 +4,7 @@ import ProductsCard from "../Shared/ProductsCard";
 
 const PopularProducts = async () => {
   const products = await getproducts();
-  const topProducts = products.slice(0, 6);
+  const topProducts = products.slice(0, 3);
 
   return (
     <section className="container mx-auto px-4 py-16">
