@@ -1,13 +1,18 @@
 "use client";
 
+import { ArrowRightFromSquare } from "@gravity-ui/icons";
+import { Avatar, Dropdown, Label } from "@heroui/react";
 import { useState } from "react";
 import { Link, Button } from "@heroui/react";
 import { usePathname } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const usePathName = usePathname();
+
+  const { data, isPending } = authClient.useSession();
+  const user = data?.user;
 
   return (
     <section>
@@ -86,24 +91,87 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <div className="hidden items-center gap-4 md:flex">
-            <Link
-              href="/auth/login"
-              className={
-                usePathName === "/auth/login"
-                  ? "btn bg-black text-white no-underline rounded-full"
-                  : "no-underline"
-              }
-            >
-              Login
-            </Link>
-            <Link
-              href="/auth/signup"
-              className={"btn bg-black rounded-full text-white no-underline"}
-            >
-              Sign Up
-            </Link>
-          </div>
+
+          {isPending ? (
+            <span>lodong...</span>
+          ) : user ? (
+            <Dropdown>
+              <Dropdown.Trigger className="rounded-full">
+                <Avatar size="lg">
+                  <Avatar.Image
+                    alt={"user?.name"}
+                    src={user?.image}
+                    referrerPolicy="no-referrer"
+                  />
+                  <Avatar.Fallback delayMs={600}>
+                    {user.name.charAt(0)}
+                  </Avatar.Fallback>
+                </Avatar>
+              </Dropdown.Trigger>
+              <Dropdown.Popover>
+                <div className="px-3 pt-3 pb-1">
+                  <div className="flex items-center gap-2">
+                    <Avatar size="sm">
+                      <Avatar.Image
+                        alt={user.naem}
+                        src={user?.image}
+                        referrerPolicy="no-referrer"
+                      />
+                      <Avatar.Fallback delayMs={600}>
+                        {user.name?.charAt(0)}
+                      </Avatar.Fallback>
+                    </Avatar>
+                    <div className="flex flex-col gap-0">
+                      <p className="text-sm leading-5 font-medium">
+                        {user?.name}
+                      </p>
+                      <p className="text-xs leading-none text-muted">
+                        {user?.email}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <Dropdown.Menu>
+                  <Dropdown.Item id="profile" textValue="Profile">
+                    <Link href="/profile" className="no-underline w-full">
+                      <Label>Profile</Label>
+                    </Link>
+                  </Dropdown.Item>
+
+                  <Dropdown.Item
+                    id="logout"
+                    textValue="Logout"
+                    variant="danger"
+                    onClick={async () => await authClient.signOut()}
+                  >
+                    <div className="flex w-full items-center justify-between gap-2">
+                      <Label>Log Out</Label>
+                      <ArrowRightFromSquare className="size-3.5 text-danger" />
+                    </div>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown.Popover>
+            </Dropdown>
+          ) : (
+            <div className="hidden items-center gap-4 md:flex">
+              <Link
+                href="/auth/login"
+                className={
+                  usePathName === "/auth/login"
+                    ? "btn bg-black text-white no-underline rounded-full"
+                    : "no-underline"
+                }
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth/signup"
+                className={"btn bg-black rounded-full text-white no-underline"}
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </header>
         {isMenuOpen && (
           <div className="border-t border-separator md:hidden">

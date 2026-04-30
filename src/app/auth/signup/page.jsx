@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Eye, EyeOff, Camera } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
 
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,18 +15,16 @@ const SignupPage = () => {
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
 
-    console.log(userData);
-
     const { data, error } = await authClient.signUp.email({
       name: userData.name,
       photo: userData.photo,
       email: userData.email,
       password: userData.password,
-      callbackURL: "/",
     });
 
     if (data) {
       toast.success("Sign Up Successfull");
+      redirect("/");
     }
 
     if (error) {
