@@ -28,6 +28,10 @@ const TopBrands = () => {
         <h2 className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight">
           Top Brands
         </h2>
+        <p className="text-zinc-500 max-w-lg text-lg">
+          Elevate your lifestyle with our exclusive catalog of world-class
+          brands and high-quality essentials designed for you.
+        </p>
       </div>
       <div className="py-10 bg-gray-50 dark:bg-zinc-950 my-10">
         <Marquee speed={60} gradient={false} pauseOnHover={true}>

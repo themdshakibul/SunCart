@@ -33,6 +33,12 @@ const SignupPage = () => {
     }
   };
 
+  const hadelLogingGoogle = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center px-4 bg-gray-50 py-10">
       <div className="card w-full max-w-md bg-white shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
@@ -138,6 +144,7 @@ const SignupPage = () => {
           </div>
 
           <button
+            onClick={hadelLogingGoogle}
             type="button"
             className="btn btn-outline w-full border-gray-200 hover:border-black hover:bg-black hover:text-white rounded-full gap-3 font-bold text-[10px] uppercase tracking-widest h-12 transition-all duration-300"
           >

@@ -30,6 +30,12 @@ const LoginPage = () => {
     }
   };
 
+  const hadelLogingGoogle = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   return (
     <section className=" flex items-center justify-center px-4 bg-gray-50 py-10">
       <div
@@ -106,6 +112,7 @@ const LoginPage = () => {
           </div>
 
           <button
+            onClick={hadelLogingGoogle}
             type="button"
             className="btn btn-outline w-full border-gray-200 hover:border-black hover:bg-black hover:text-white rounded-full gap-3 font-bold text-[10px] uppercase tracking-widest h-12 transition-all duration-300"
           >
