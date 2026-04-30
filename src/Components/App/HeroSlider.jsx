@@ -17,7 +17,7 @@ const banners = [
     desc: "Don't miss out! Get your hands on the most wanted cardigan styles of the season before they're gone.",
     price: "Starting at $39",
     image:
-      "https://i.ibb.co.com/Wvngkxyk/philipp-arlt-8-Ey-B-Rva-Wt-Y-unsplash-Photoroom.png",
+      "https://i.ibb.co.com/MyYcbh2x/mina-rad-AV2-Hal4-UGT8-unsplash-Photoroom.png",
   },
   {
     id: 2,

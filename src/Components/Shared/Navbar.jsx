@@ -70,7 +70,7 @@ const Navbar = () => {
                     : "no-underline"
                 }
               >
-                Products
+                products
               </Link>
             </li>
             <li>
@@ -129,7 +129,7 @@ const Navbar = () => {
                       : "no-underline"
                   }
                 >
-                  Products
+                  products
                 </Link>
               </li>
               <li>
@@ -147,13 +147,17 @@ const Navbar = () => {
               <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
                 <Link
                   href="/auth/login"
-                  className={"btn bg-black rounded-full no-underline text-white"}
+                  className={
+                    "btn bg-black rounded-full no-underline text-white"
+                  }
                 >
                   Login
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className={"btn bg-black rounded-full text-white no-underline"}
+                  className={
+                    "btn bg-black rounded-full text-white no-underline"
+                  }
                 >
                   Sign Up
                 </Link>

@@ -1,11 +1,9 @@
-const AllProductsPage = () => {
-    return (
-        <section>
-            <div>
-                all products page
-            </div>
-        </section>
-    );
+const AllproductssPage = () => {
+  return (
+    <section>
+      <div>all productss page</div>
+    </section>
+  );
 };
 
-export default AllProductsPage;
+export default AllproductssPage;
