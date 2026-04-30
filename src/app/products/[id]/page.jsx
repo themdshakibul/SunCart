@@ -1,8 +1,8 @@
 import { Button, Card, Chip } from "@heroui/react";
 import Image from "next/image";
-import Link from "next/link";
 import { ShoppingCart, Star } from "lucide-react";
 import { getproducts } from "@/data/Products";
+
 
 const ProductsDetails = async ({ params }) => {
   const { id } = await params;

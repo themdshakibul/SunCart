@@ -91,7 +91,7 @@ const Navbar = () => {
               href="/auth/login"
               className={
                 usePathName === "/auth/login"
-                  ? "btn bg-black text-white no-underline"
+                  ? "btn bg-black text-white no-underline rounded-full"
                   : "no-underline"
               }
             >
