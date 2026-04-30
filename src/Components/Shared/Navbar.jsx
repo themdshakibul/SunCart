@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <section>
       <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
-        <header className="container mx-auto px-2 flex h-16 items-center justify-between">
+        <header className="container mx-auto px-4 flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
             <button
               className="md:hidden"

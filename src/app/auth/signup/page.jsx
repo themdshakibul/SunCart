@@ -3,9 +3,35 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Eye, EyeOff, Camera } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(formData.entries());
+
+    console.log(userData);
+
+    const { data, error } = await authClient.signUp.email({
+      name: userData.name,
+      photo: userData.photo,
+      email: userData.email,
+      password: userData.password,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("Sign Up Successfull");
+    }
+
+    if (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 bg-gray-50 py-10">
@@ -20,7 +46,7 @@ const SignupPage = () => {
             </p>
           </div>
 
-          <form className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-4">
             <div className="form-control w-full">
               <label className="label ml-2">
                 <span className="label-text font-bold text-black uppercase text-[10px] tracking-widest">
@@ -30,7 +56,6 @@ const SignupPage = () => {
               <input
                 type="text"
                 name="name"
-                required
                 placeholder="Enter your Name"
                 className="input input-bordered rounded-full border-gray-200 focus:border-black focus:outline-none bg-gray-50 text-black px-6 transition-all"
               />
@@ -46,6 +71,7 @@ const SignupPage = () => {
                 <input
                   type="text"
                   name="photo"
+                  required
                   placeholder="https://example.com/photo.jpg"
                   className="input input-bordered w-full rounded-full border-gray-200 focus:border-black focus:outline-none bg-gray-50 text-black px-6 transition-all"
                 />
@@ -81,9 +107,10 @@ const SignupPage = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
+                  required
+                  minLength={8}
                   placeholder="Enter your Password"
                   className="input input-bordered w-full rounded-full border-gray-200 focus:border-black focus:outline-none bg-gray-50 text-black px-6 pr-12 transition-all duration-300 hover:border-gray-400 group-focus-within:shadow-md"
-                  required
                 />
                 <button
                   type="button"

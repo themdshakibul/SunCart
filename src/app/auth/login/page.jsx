@@ -3,9 +3,33 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Eye, EyeOff } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(formData.entries());
+    console.log(userData);
+
+    const { data, error } = await authClient.signIn.email({
+      email: userData.email,
+      password: userData.password,
+      rememberMe: true,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("Sign In Successfull");
+    }
+    if (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <section className=" flex items-center justify-center px-4 bg-gray-50 py-10">
       <div
@@ -22,7 +46,7 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <form className="space-y-5">
+          <form onSubmit={onSubmit} className="space-y-5">
             <div className="form-control w-full">
               <label className="label ml-2">
                 <span className="label-text font-bold text-black uppercase text-[10px] tracking-widest">
@@ -49,9 +73,10 @@ const LoginPage = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
+                  required
+                  minLength={8}
                   placeholder="Enter your Password"
                   className="input input-bordered w-full rounded-full border-gray-200 focus:border-black focus:outline-none bg-gray-50 text-black px-6 pr-12 transition-all duration-300 hover:border-gray-400 group-focus-within:shadow-md"
-                  required
                 />
 
                 <button
@@ -69,7 +94,7 @@ const LoginPage = () => {
             </div>
 
             <button
-              type="button"
+              type="submit"
               className="btn btn-active w-full bg-black hover:bg-gray-800 text-white rounded-full border-none text-xs uppercase tracking-[0.2em] font-bold h-12 mt-4 shadow-lg shadow-gray-200"
             >
               Sign In
