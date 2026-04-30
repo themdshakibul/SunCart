@@ -1,11 +1,15 @@
 import HeroSlider from "@/Components/App/HeroSlider";
 import PopularProducts from "@/Components/App/PopularProducts";
+import SummerCareTips from "@/Components/App/SummerCareTips";
 
 export default function Home() {
   return (
     <div>
-      <HeroSlider />
-      <PopularProducts />
+      <main>
+        <HeroSlider />
+        <PopularProducts />
+        <SummerCareTips />
+      </main>
     </div>
   );
 }

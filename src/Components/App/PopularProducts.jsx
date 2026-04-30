@@ -4,19 +4,20 @@ import ProductsCard from "../Shared/ProductsCard";
 
 const PopularProducts = async () => {
   const products = await getproducts();
-  console.log(products);
+  const topProducts = products.slice(0, 6);
 
   return (
     <section className="container mx-auto px-4 py-16">
-      <header className="flex items-center justify-center gap-2 mb-10">
-        <Flame className="text-orange-500" fill="currentColor" size={28} />
-        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
+      <header>
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 text-center">
           Popular Products
         </h2>
       </header>
 
-      <div>
-        <ProductsCard key={products.id} products={products} />
+      <div className="grid md:grid-cols-2 lg:grid-cols-3">
+        {topProducts.map((product) => (
+          <ProductsCard key={product.id} product={product} />
+        ))}
       </div>
     </section>
   );
