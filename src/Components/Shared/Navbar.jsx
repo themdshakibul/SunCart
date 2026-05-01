@@ -14,6 +14,8 @@ const Navbar = () => {
   const { data, isPending } = authClient.useSession();
   const user = data?.user;
 
+  console.log(user);
+
   return (
     <section>
       <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
@@ -99,7 +101,7 @@ const Navbar = () => {
               <Dropdown.Trigger className="rounded-full">
                 <Avatar size="lg">
                   <Avatar.Image
-                    alt={"user?.name"}
+                    alt={user?.name}
                     src={user?.image}
                     referrerPolicy="no-referrer"
                   />

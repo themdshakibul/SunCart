@@ -115,7 +115,7 @@ const SignupPage = () => {
                   required
                   minLength={8}
                   placeholder="Enter your Password"
-                  className="input input-bordered w-full rounded-full border-gray-200 focus:border-black focus:outline-none bg-gray-50 text-black px-6 pr-12 transition-all duration-300 hover:border-gray-400 group-focus-within:shadow-md"
+                  className="input input-bordered w-full rounded-full border-gray-200 focus:border-black focus:outline-none bg-gray-50 text-black px-6 pr-12 transition-all duration-300 hover:border-gray-400"
                 />
                 <button
                   type="button"
