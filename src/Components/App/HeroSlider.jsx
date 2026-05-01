@@ -1,4 +1,5 @@
 "use client";
+import "animate.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
@@ -53,7 +54,6 @@ export default function HeroSlider() {
           <SwiperSlide key={item.id}>
             <div className="bg-linear-to-r from-[#f8f8f8] to-[#eef4ff]">
               <div className="grid lg:grid-cols-2 items-center min-h-125 lg:min-h-150">
-                {/* Left Content - Text & Buttons */}
                 <div className="px-6 py-12 md:px-16 lg:px-20 space-y-6 md:space-y-8 text-center lg:text-left order-2 lg:order-1">
                   <span className="inline-block bg-black text-white px-4 py-1.5 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-medium">
                     {item.tag}
@@ -80,15 +80,13 @@ export default function HeroSlider() {
                       />
                     </button>
 
-                    <button className="border-2 border-black px-7 py-3.5 md:px-8 md:py-4 rounded-full hover:bg-black hover:text-white duration-300">
+                    <button className="border-2 border-black px-7 py-3.5 md:px-8 md:py-4 rounded-full hover:bg-black hover:text-white duration-300 animate__zoomIn animate__animated">
                       Explore More
                     </button>
                   </div>
                 </div>
 
-                {/* Right Content - Image */}
                 <div className="relative flex justify-center items-end h-full pt-10 lg:pt-0 order-1 lg:order-2">
-                  {/* decorative circle */}
                   <div className="absolute w-48 h-48 md:w-72 md:h-72 rounded-full bg-white/50 blur-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
                   <div className="relative w-70 sm:w-100 md:w-125 lg:w-full max-w-150 aspect-square">
@@ -101,7 +99,6 @@ export default function HeroSlider() {
                     />
                   </div>
 
-                  {/* floating sale badge - hidden on very small screens, smaller on mobile */}
                   <div className="hidden sm:flex absolute top-10 right-10 md:top-20 md:right-20 bg-white shadow-xl rounded-full w-20 h-20 md:w-28 md:h-28 items-center justify-center z-20">
                     <div className="text-center">
                       <h4 className="font-bold text-lg md:text-xl">50%</h4>
@@ -114,7 +111,6 @@ export default function HeroSlider() {
           </SwiperSlide>
         ))}
 
-        {/* custom arrows - hidden on mobile for better touch experience */}
         <button className="custom-prev hidden md:flex absolute left-5 top-1/2 cursor-pointer -translate-y-1/2 z-20 bg-white/80 backdrop-blur-sm shadow-lg p-3 rounded-full hover:scale-110 duration-300">
           <ChevronLeft />
         </button>

@@ -1,11 +1,12 @@
 "use client";
 
 import { ArrowRightFromSquare } from "@gravity-ui/icons";
-import { Avatar, Dropdown, Label } from "@heroui/react";
+import { Avatar, Dropdown, Label, Spinner } from "@heroui/react";
 import { useState } from "react";
-import { Link, Button } from "@heroui/react";
-import { usePathname } from "next/navigation";
+import { Link } from "@heroui/react";
+import { redirect, usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +15,11 @@ const Navbar = () => {
   const { data, isPending } = authClient.useSession();
   const user = data?.user;
 
-  console.log(user);
+  const handelLogout = async () => {
+    await authClient.signOut();
+    toast.success("LogOut Successfull");
+    redirect("/");
+  };
 
   return (
     <section>
@@ -95,7 +100,7 @@ const Navbar = () => {
           </ul>
 
           {isPending ? (
-            <span>lodong...</span>
+            <Spinner />
           ) : user ? (
             <Dropdown>
               <Dropdown.Trigger className="rounded-full">
@@ -144,7 +149,7 @@ const Navbar = () => {
                     id="logout"
                     textValue="Logout"
                     variant="danger"
-                    onClick={async () => await authClient.signOut()}
+                    onClick={handelLogout}
                   >
                     <div className="flex w-full items-center justify-between gap-2">
                       <Label>Log Out</Label>

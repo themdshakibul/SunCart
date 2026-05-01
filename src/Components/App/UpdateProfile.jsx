@@ -57,13 +57,13 @@ const UpdateProfile = () => {
                     />
                   </TextField>
 
-                  <TextField className="w-full" name="photo" type="text">
+                  <TextField className="w-full" name="image" type="text">
                     <Label className="ml-1 font-medium text-black">
                       Photos
                     </Label>
 
                     <Input
-                      name="photo"
+                      name="image"
                       className="rounded-full border border-zinc-200 text-black"
                       placeholder="Paste photo URL"
                     />

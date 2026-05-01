@@ -1,15 +1,12 @@
 "use client";
 
 import UpdateProfile from "@/Components/App/UpdateProfile";
-import { useSession } from "@/lib/auth-client";
-import { Card, Avatar, Button } from "@heroui/react";
-import { Briefcase, Mail, MapPin } from "lucide-react";
-import { redirect } from "next/navigation";
-import { FaGithub } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
+import { Card, Avatar } from "@heroui/react";
 
 const ProfielPage = () => {
-  const userData = useSession();
-  const user = userData.data?.user;
+  const { data } = authClient.useSession();
+  const user = data?.user;
 
   return (
     <section>
@@ -17,15 +14,20 @@ const ProfielPage = () => {
         <Card className="w-full max-w-md bg-white/70 backdrop-blur-md border border-gray-200 shadow-xl rounded-3xl">
           <div className="p-8">
             <div className="flex flex-col items-center">
-              {/* User Avatar */}
-              <div>
-                <Avatar
+              <Avatar className="w-40 h-40 border shadow-sm">
+                <Avatar.Image
+                  alt={user?.name ?? "Profile"}
                   src={user?.image}
-                  className="w-32 h-32 text-large ring-4 ring-offset-4 ring-black"
+                  referrerPolicy="no-referrer"
                 />
-              </div>
+                <Avatar.Fallback
+                  className="text-4xl font-bold uppercase"
+                  delayMs={600}
+                >
+                  {user?.name?.charAt(0) ?? "?"}
+                </Avatar.Fallback>
+              </Avatar>
 
-              {/* User Info */}
               <div className="text-center mt-6 space-y-2">
                 <h1 className="text-2xl font-bold text-gray-900  tracking-tight">
                   {user?.name}
