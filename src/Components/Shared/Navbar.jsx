@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRightFromSquare } from "@gravity-ui/icons";
-import { Avatar, Dropdown, Label, Spinner } from "@heroui/react";
+import { Avatar, Dropdown, Label } from "@heroui/react";
 import { useState } from "react";
 import { Link } from "@heroui/react";
 import { redirect, usePathname } from "next/navigation";
@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const usePathName = usePathname();
 
-  const { data, isPending } = authClient.useSession();
+  const { data } = authClient.useSession();
   const user = data?.user;
 
   const handelLogout = async () => {
@@ -82,7 +82,7 @@ const Navbar = () => {
                     : "no-underline"
                 }
               >
-                products
+                Products
               </Link>
             </li>
             <li>
@@ -99,9 +99,7 @@ const Navbar = () => {
             </li>
           </ul>
 
-          {isPending ? (
-            <Spinner />
-          ) : user ? (
+          {user ? (
             <Dropdown>
               <Dropdown.Trigger className="rounded-full">
                 <Avatar size="lg">
@@ -204,7 +202,7 @@ const Navbar = () => {
                       : "no-underline"
                   }
                 >
-                  products
+                  Products
                 </Link>
               </li>
               <li>

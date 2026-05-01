@@ -1,5 +1,4 @@
 import { getproducts } from "@/data/Products";
-import { Flame } from "lucide-react";
 import ProductsCard from "../Shared/ProductsCard";
 
 const PopularProducts = async () => {
