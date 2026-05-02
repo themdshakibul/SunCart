@@ -24,7 +24,8 @@ const SignupPage = () => {
 
     if (data) {
       toast.success("Sign Up Successfull");
-      redirect("/");
+      await authClient.signOut();
+      redirect("/auth/login");
     }
 
     if (error) {
